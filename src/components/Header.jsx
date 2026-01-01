@@ -1,8 +1,8 @@
 import {Link} from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../assets/css/header.css";
 import "../assets/css/contact.css";
-import logo from "../assets/imgs/bliss-homes-w.png";
+import logo from "../assets/imgs/new-blisshome-w.png";
 import axios from "axios";
 
 const Header = () => {
