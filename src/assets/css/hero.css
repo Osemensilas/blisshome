@@ -1,0 +1,83 @@
+/*Hero Begins*/
+
+#hero {
+    position: relative;
+    height: calc(100vh + 100px);
+    width: 100vw;
+}
+
+#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000000;
+    opacity: 0.6;
+}
+
+.hero-header-container {
+    height: max-content;
+    width: 100%;
+    position: fixed;
+    z-index: 9;
+    transition: 0.3s ease-in-out;
+    z-index: 10;
+}
+
+.hero-header-container.active {
+    background: var(--black);
+}
+
+.hero-background-img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.hero-background-img {
+    height: 100%;
+    width: 100%;
+}
+
+.hero {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 80px;
+}
+
+.hero-content {
+    position: relative;
+    height: max-content;
+    width: 70%;
+    z-index: 9;
+}
+
+.hero-content-header {
+    height: max-content;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.hero-content-catch {
+    height: max-content;
+    width: 100%;
+}
+
+.hero-content-header h1 {
+    color: var(--white);
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.hero-content-header h3{
+    color: var(--white);
+    line-height: 30px;
+}
+/*Hero Begins Ends*/
