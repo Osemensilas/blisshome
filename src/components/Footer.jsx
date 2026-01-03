@@ -23,17 +23,48 @@ const Footer = () => {
         }));
     }
 
-    const formSubmitted = (e) => {
+    const formSubmitted = async (e) => {
         e.preventDefault();
-    }
 
-    const btnClicked = async () => {
-        let formDatas = new FormData();
+        let nameVal = /^[a-zA-Z]+$/;
+        let emailVal = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-        Object.keys(formData).forEach((key) => {
-            formDatas.append(key, formData[key]);
-        })
+        if (formData.firstname === '' || formData.lastname === '' || formData.email === ''){
+            setErrorContainer('error-container active');
+            setError('All field required');
+            return;
+        }else{
+            setErrorContainer('error-container');
+            setError('');
+        }
 
+        if (!nameVal.test(formData.firstname)){
+            setErrorContainer('Invalid first name');
+            setError('Invalid first name');
+            return;
+        }else{
+            setErrorContainer('error-container');
+            setError('');
+        }
+
+        if (!nameVal.test(formData.lastname)){
+            setErrorContainer('error-container active');
+            setError('Invalid last name');
+            return;
+        }else{
+            setErrorContainer('error-container');
+            setError('');
+        }
+
+        if (!emailVal.test(formData.email)){
+            setErrorContainer('error-container active');
+            setError('Invalid email address');
+            return;
+        }else{
+            setErrorContainer('error-container');
+            setError('');
+        }
+        
         const url = "https://backend.theblisshomes.co.uk/subscribe.php";
 
         try{
@@ -48,37 +79,12 @@ const Footer = () => {
             let validDetail = true;
 
             if (status === 'error'){
-                if (message.firstname === 'First name required'){
-                    validDetail = false;
-                    setErrorContainer('error-container active');
-                    setError('First name required');
-                }
-    
-                if (message.lastname === 'Last name required'){
-                    validDetail = false;
-                    setErrorContainer('error-container active');
-                    setError('Last name required');
-                }
-    
-                if (message.email === 'Email required'){
-                    validDetail = false;
-                    setErrorContainer('error-container active');
-                    setError('Email required');
-                }
-    
-                if (message.email === 'Invalid email address'){
-                    validDetail = false;
-                    setErrorContainer('error-container active');
-                    setError('Invalid email address');
-                } 
-                
-                if (message.email === 'Message not sent. Check connection'){
+                 if (message.email === 'Message not sent. Check connection'){
                     validDetail = false;
                     setErrorContainer('error-container active');
                     setError(message.email);
-                } 
+                }
             }
-            
 
             if (status === 'success'){
                 if(validDetail){
@@ -94,6 +100,7 @@ const Footer = () => {
         }catch(error){
             console.log('Error sending message:',error);
         }
+        
     }
 
     return ( 
@@ -148,7 +155,7 @@ const Footer = () => {
                                 </div>
                         </div>
                         <div className="footer-subscribe-btn-container">
-                            <input type="submit" name="submit" value="Subscribe" onClick={btnClicked} className="footer-subscribe-btn" />
+                            <input type="submit" name="submit" value="Subscribe" className="footer-subscribe-btn" />
                         </div>
                     </form>
                 </div>

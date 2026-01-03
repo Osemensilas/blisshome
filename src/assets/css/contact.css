@@ -59,19 +59,38 @@
 .contact-form-details-container {
     height: max-content;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.contact-form-details {
+.contact-form-subject-container{
     height: max-content;
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.contact-form-details label {
+.contact-form-subject-container input{
+    height: 40px;
+    width: 100%;
+    border: 1px solid var(--accent2);
+    border-radius: 5px;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+    padding: 0 10px;
+}
+
+.contact-form-details {
+    height: max-content;
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form-details label,
+.contact-form-subject-container label {
     margin: 5px 0;
     color: var(--accent2);
 }

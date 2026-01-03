@@ -18,6 +18,7 @@ const Header = () => {
         email: '',
         message: '',
         phone: '',
+        subject: '',
         checkbox: false,
     });
 
@@ -82,107 +83,105 @@ const Header = () => {
         let emailVal = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         let phoneVal = /^[+][0-9]{1,3}[0-9]{10}$/;
 
-        if (formData.firstname === ''){
+        if (formData.firstname === '' || formData.phone === '' || formData.lastname === '' || formData.email === '' ||
+            formData.message === '' || formData.subject === ''
+        ){
             setErrorContainer('error-container active');
-            setError('First name required');
+            setError('All field required');
+            return;
         }else{
-            if (!nameVal.test(formData.firstname)){
+            setErrorContainer('error-container');
+            setError('');
+        }
+
+        if (!nameVal.test(formData.firstname)){
+            setErrorContainer('error-container active');
+            setError('Invalid first name');
+            return;
+        }else{
+            if (formData.firstname.length < 2){
                 setErrorContainer('error-container active');
-                setError('Invalid first name');
+                setError('Firstname too short');
+                return;
             }else{
-                if (formData.firstname.length < 2){
-                    setErrorContainer('error-container active');
-                    setError('Firstname too short');
+                setErrorContainer('error-container');
+                setError('');
+            }
+        }
+
+        if (!nameVal.test(formData.lastname)){
+            setErrorContainer('error-container active');
+            setError('Invalid last name');
+            return;
+        }else{
+            if (formData.lastname.length < 2){
+                setErrorContainer('error-container active');
+                setError('Lastname too short');
+                return;
+            }else{
+                setErrorContainer('error-container');
+                setError('');
+            }
+        }
+
+        if (!emailVal.test(formData.email)){
+            setErrorContainer('error-container active');
+            setError('Invalid email address');
+            return;
+        }
+
+        if (!phoneVal.test(formData.phone)){
+            setErrorContainer('error-container active');
+            setError("Phone number should be in coutry's code format");
+            return;
+        }
+
+        if (!formData.checkbox){
+            setErrorContainer('error-container active');
+            setError("Check terms box");
+            return;
+        }else{
+            setErrorContainer('error-container');
+            setError("");
+        }
+
+        let formDatas = new FormData();
+
+        Object.keys(formData).forEach((key) => {
+            formDatas.append(key, formData[key]);
+        })
+
+        const url = "https://backend.theblisshomes.co.uk/contact.php";
+
+        try{
+            const response = await axios.post(url, formData, {
+                headers: {
+                    "Content-Type" : "application/json",
+                },withCredentials: true,
+            });
+
+            const {status, message} = response.data;
+
+            if (response.status === 200){
+                if (status === 'success'){
+                    setErrorContainer('error-container success');
+                    setError(message);
+
+                    setFormData({
+                        firstname: '',
+                        lastname: '',
+                        email: '',
+                        message: '',
+                        phone: '',
+                        checkbox: false,
+                        });
                 }else{
-                    if (formData.lastname === ''){
-                        setErrorContainer('error-container active');
-                        setError('Last name required');
-                    }else{
-                        if (!nameVal.test(formData.lastname)){
-                            setErrorContainer('error-container active');
-                            setError('Invalid last name');
-                        }else{
-                            if (formData.lastname.length < 2){
-                                setErrorContainer('error-container active');
-                                setError('Lastname too short');
-                            }else{
-                                if (formData.email === ''){
-                                    setErrorContainer('error-container active');
-                                    setError('Email required');
-                                }else{
-                                    if (!emailVal.test(formData.email)){
-                                        setErrorContainer('error-container active');
-                                        setError('Invalid email address');
-                                    }else{
-                                        if (formData.phone === ''){
-                                            setErrorContainer('error-container active');
-                                            setError('Phone number required');
-                                        }else{
-                                            if (!phoneVal.test(formData.phone)){
-                                                setErrorContainer('error-container active');
-                                                setError("Phone number should be in coutry's code format");
-                                            }else{
-                                                if (formData.message === ''){
-                                                    setErrorContainer('error-container active');
-                                                    setError("Message is required");
-                                                }else{
-                                                    if (!formData.checkbox){
-                                                        setErrorContainer('error-container active');
-                                                        setError("Check terms box");
-                                                    }else{
-                                                        setErrorContainer('error-container');
-                                                        setError("");
-
-                                                        let formDatas = new FormData();
-
-                                                        Object.keys(formData).forEach((key) => {
-                                                            formDatas.append(key, formData[key]);
-                                                        })
-
-                                                        const url = "https://backend.theblisshomes.co.uk/contact.php";
-
-                                                        try{
-                                                            const response = await axios.post(url, formData, {
-                                                                headers: {
-                                                                    "Content-Type" : "application/json",
-                                                                },withCredentials: true,
-                                                            });
-
-                                                            const {status, message} = response.data;
-    
-                                                            if (response.status === 200){
-                                                                if (status === 'success'){
-                                                                    setErrorContainer('error-container success');
-                                                                    setError(message);
-
-                                                                    setFormData({
-                                                                        firstname: '',
-                                                                        lastname: '',
-                                                                        email: '',
-                                                                        message: '',
-                                                                        phone: '',
-                                                                        checkbox: false,
-                                                                      });
-                                                                }else{
-                                                                    setErrorContainer('error-container active');
-                                                                    setError(message);
-                                                                }
-                                                            }
-                                                        }catch(error){
-                                                            console.log('Error sending message:',error);
-                                                        }
-                                                        
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    setErrorContainer('error-container active');
+                    setError(message);
                 }
             }
+        }catch(error){
+            console.log('Error sending message:',error);
         }
     }
 
@@ -259,6 +258,10 @@ const Header = () => {
                                     <label htmlFor="lastname">Phone:</label>
                                     <input type="text" name="phone" value={formData.phone} onChange={handleChanged} className="contact-form-detail" id="lastname" />
                                 </div>
+                            </div>
+                            <div className="contact-form-subject-container">
+                                <label htmlFor="subject">Subject:</label>
+                                <input type="text" name="subject" value={formData.subject} onChange={handleChanged} className="contact-form-detail" id="subject" />
                             </div>
                             <div className="contact-form-message-container">
                                 <textarea name="message" placeholder="Type your message..." value={formData.message} onChange={handleChanged} id="contact-form-message" className="contact-form-message"></textarea>

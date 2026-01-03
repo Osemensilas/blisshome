@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import heroImg from "../assets/imgs/join-us.jpg";
 import joinImg from "../assets/imgs/join-hero.jpg";
+import axios from "axios";
 
 const Join = () => {
 
@@ -19,6 +20,7 @@ const Join = () => {
         message: '',
         phone: '',
         checkbox: false,
+        subject: 'Application to join the team'
     });
 
     const handleChanged = (e) => {
@@ -82,67 +84,109 @@ const Join = () => {
         e.preventDefault();
     }
 
-    const submitBtn = () => {
+    const submitBtn = async () => {
         let nameVal = /^[a-zA-Z]+$/;
         let emailVal = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         let phoneVal = /^[+][0-9]{1,3}[0-9]{10}$/;
 
-        if (formData.firstname === ''){
+        if (formData.firstname === '' || formData.phone === '' || formData.lastname === '' || formData.email === '' ||
+            formData.message === '' || formData.subject === ''
+        ){
             setErrorContainer('error-container active');
-            setError('First name required');
+            setError('All field required');
+            return;
         }else{
-            if (!nameVal.test(formData.firstname)){
+            setErrorContainer('error-container');
+            setError('');
+        }
+
+        if (!nameVal.test(formData.firstname)){
+            setErrorContainer('error-container active');
+            setError('Invalid first name');
+        }else{
+            if (formData.firstname.length < 2){
                 setErrorContainer('error-container active');
-                setError('Invalid first name');
+                setError('Firstname too short');
+                return;
             }else{
-                if (formData.firstname.length < 2){
-                    setErrorContainer('error-container active');
-                    setError('Firstname too short');
+                setErrorContainer('error-container');
+                setError('');
+            }
+        }
+
+        if (!nameVal.test(formData.lastname)){
+            setErrorContainer('error-container active');
+            setError('Invalid last name');
+            return;
+        }else{
+            if (formData.lastname.length < 2){
+                setErrorContainer('error-container active');
+                setError('Lastname too short');
+                return;
+            }else{
+                setErrorContainer('error-container');
+                setError('');
+            }
+        }
+
+       if (!emailVal.test(formData.email)){
+            setErrorContainer('error-container active');
+            setError('Invalid email address');
+            return;
+        }else{
+            setErrorContainer('error-container');
+            setError("");
+        }
+
+        if (!phoneVal.test(formData.phone)){
+            setErrorContainer('error-container active');
+            setError("Phone number should be in coutry's code format");
+            return;
+        }else{
+            setErrorContainer('error-container');
+            setError("");
+        }
+
+        if (!formData.checkbox){
+            setErrorContainer('error-container active');
+            setError("Check terms box");
+            return;
+        }else{
+            setErrorContainer('error-container');
+            setError("");
+        }
+
+        const url = "https://backend.theblisshomes.co.uk/contact.php";
+        
+        try{
+            const response = await axios.post(url, formData, {
+                headers: {
+                    "Content-Type" : "application/json",
+                },withCredentials: true,
+            });
+
+            const {status, message} = response.data;
+
+            if (response.status === 200){
+                if (status === 'success'){
+                    setErrorContainer('error-container success');
+                    setError(message);
+
+                    setFormData({
+                        firstname: '',
+                        lastname: '',
+                        email: '',
+                        message: '',
+                        phone: '',
+                        checkbox: false,
+                        });
                 }else{
-                    if (formData.lastname === ''){
-                        setErrorContainer('error-container active');
-                        setError('Last name required');
-                    }else{
-                        if (!nameVal.test(formData.lastname)){
-                            setErrorContainer('error-container active');
-                            setError('Invalid last name');
-                        }else{
-                            if (formData.lastname.length < 2){
-                                setErrorContainer('error-container active');
-                                setError('Lastname too short');
-                            }else{
-                                if (formData.email === ''){
-                                    setErrorContainer('error-container active');
-                                    setError('Email required');
-                                }else{
-                                    if (!emailVal.test(formData.email)){
-                                        setErrorContainer('error-container active');
-                                        setError('Invalid email address');
-                                    }else{
-                                        if (formData.phone === ''){
-                                            setErrorContainer('error-container active');
-                                            setError('Phone number required');
-                                        }else{
-                                            if (!phoneVal.test(formData.phone)){
-                                                setErrorContainer('error-container active');
-                                                setError("Phone number should be in coutry's code format");
-                                            }else{
-                                                if (!formData.checkbox){
-                                                    setErrorContainer('error-container active');
-                                                    setError("Check terms box");
-                                                }else{
-                                                    setErrorContainer('error-container');
-                                                    setError("");
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    setErrorContainer('error-container active');
+                    setError(message);
                 }
             }
+        }catch(error){
+            console.log('Error sending message:',error);
         }
     }
 
@@ -177,7 +221,7 @@ const Join = () => {
                         <h2>Join Us</h2>
                     </div>
                     <div className="join-us-right-content">
-                        <p>At our Supported Living Home, we’re more than just a team — we’re a community dedicated to making a difference every day. If you're passionate about helping others live independently and with dignity, we’d love to hear from you. Whether you’re an experienced support worker or looking to start a rewarding career in care, we offer full training, ongoing development, and a supportive work environment where you can truly thrive. Come and be part of something meaningful — join us today.</p>
+                        <p>At our Supported Living Home, we are more than just a team — we are a community dedicated to making a difference every day. If you are passionate about helping others live independently and with dignity, we’d love to hear from you. Whether you’re an experienced support worker or looking to start a rewarding career in care, we offer full training, ongoing development, and a supportive work environment where you can truly thrive. Come and be part of something meaningful — join us today.</p>
                     </div>
                     <div className="join-us-btn-container">
                         <button className="join-us-btn btn" onClick={joinUs}>Join Us</button>
@@ -210,6 +254,7 @@ const Join = () => {
                         <label htmlFor="join-phone">Phone Number:</label>
                         <input type="text" value={formData.phone} onChange={handleChanged} className="join-form-detail" id="join-phone" />
                     </div>
+                    <input type="text" value={formData.subject} name="subject" onChange={handleChanged} hidden/>
                 </div>
                 <div className="text-box-container">
                     <div className="text-box-details">
