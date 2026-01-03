@@ -1,6 +1,5 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import heroImg from "../assets/imgs/contact.jpg";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -188,7 +187,7 @@ const Contact = () => {
                 </div>
                 <div className="hero-background-img-container">
                     <div className="abovemet"></div>
-                    <img src={heroImg} alt="hero image" className="hero-background-img" />
+                    <img src="/contact.webp" alt="hero image" className="hero-background-img" loading="lazy" />
                 </div>
                 <div className="hero">
                     <div className="hero-content">

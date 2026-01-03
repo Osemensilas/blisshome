@@ -1,14 +1,10 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/css/hero.css";
-import heroImg from "../assets/imgs/home.jpg";
-import ethoImg from "../assets/imgs/homepage.jpg";
 import "../assets/css/home.css";
 import { useState, useEffect } from "react";
-import newImg from "../assets/imgs/goal.jpg";
 import "../assets/css/responsive.css";
 import { Link } from "react-router-dom";
-import homeSafe from "../assets/imgs/home-safe.jpg";
 
 
 const Home = () => {
@@ -63,7 +59,7 @@ const Home = () => {
                 </div>
                 <div className="hero-background-img-container">
                     <div className="abovemet"></div>
-                    <img src={heroImg} alt="hero image" className="hero-background-img" />
+                    <img src="/home.webp" alt="hero image" className="hero-background-img" loading="lazy" />
                 </div>
                 <div className="hero">
                     <div className="hero-content">
@@ -88,7 +84,7 @@ const Home = () => {
                     </div>
                     <div className="below-hero-right">
                         <div className="below-hero-img-container">
-                            <img src={ethoImg} alt="" className="below-hero-img" />
+                            <img src="/homepage.webp" alt="" className="below-hero-img" loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -146,7 +142,7 @@ const Home = () => {
                 <div className="our-goal">
                     <div className="our-goal-left">
                         <div className="our-goal-img-container">
-                            <img src={newImg} alt="" className="our-goal-img" />
+                            <img src="/goal.webp" alt="" className="our-goal-img" loading="lazy" />
                         </div>
                     </div>
                     <div className="our-goal-right">
@@ -174,7 +170,7 @@ We follow clear safeguarding procedures and work in partnership with relevant ex
                     </div>
                     <div className="home-safe-guarding-right">
                         <div className="home-safe-guarding-right-content">
-                            <img src={homeSafe} alt="" className="home-safe-guarding-img" />
+                            <img src="/home-safe.webp" alt="" className="home-safe-guarding-img" loading="lazy" />
                         </div>
                     </div>
                 </div>

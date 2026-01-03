@@ -1,9 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState, useEffect } from "react";
-import heroImg from "../assets/imgs/safeguard.jpg";
-import ethoImg from "../assets/imgs/safe.jpg";
-import lawImg from "../assets/imgs/law.jpg";
 
 const Safeguarding = () => {
 
@@ -57,7 +54,7 @@ const Safeguarding = () => {
                 </div>
                 <div className="hero-background-img-container">
                     <div className="abovemet"></div>
-                    <img src={heroImg} alt="hero image" className="hero-background-img" />
+                    <img src="/safeguard.webp" alt="hero image" className="hero-background-img" loading="lazy" />
                 </div>
                 <div className="hero">
                     <div className="hero-content">
@@ -85,7 +82,7 @@ const Safeguarding = () => {
                     <div className="below-hero-right">
                         <div className="undernet"></div>
                         <div className="below-hero-img-container">
-                            <img src={ethoImg} alt="" className="below-hero-img" />
+                            <img src="/safe.goal" alt="safe" className="below-hero-img" loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -189,7 +186,7 @@ const Safeguarding = () => {
                 <div className="our-goal">
                     <div className="our-goal-left">
                         <div className="our-goal-img-container">
-                            <img src={lawImg} alt="" className="our-goal-img" />
+                            <img src="/law.webp" alt="goal" className="our-goal-img" loading="lazy" />
                         </div>
                     </div>
                     <div className="our-goal-right">

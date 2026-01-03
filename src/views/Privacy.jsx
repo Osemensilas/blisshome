@@ -1,6 +1,5 @@
 import Footer from "../components/Footer";
 import { useState, useEffect } from "react";
-import heroImg from "../assets/imgs/privacy.jpg";
 import Header from "../components/Header";
 
 const Privacy = () => {
@@ -55,7 +54,7 @@ const Privacy = () => {
             </div>
             <div className="hero-background-img-container">
                 <div className="abovemet"></div>
-                <img src={heroImg} alt="hero image" className="hero-background-img" />
+                <img src="/privacy.webp" alt="hero image" className="hero-background-img" loading="lazy" />
             </div>
             <div className="hero">
                 <div className="hero-content">
@@ -68,7 +67,7 @@ const Privacy = () => {
         </section>
         <section id="privacy-policy">
             <div className="privacy-policy">
-                <p>At The Bliss Homes, we are committed to protecting the privacy and personal information of our residents, staff, and visitors. We collect and process personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. Information is used solely to provide high-quality care and support, ensure safety, and comply with legal obligations. We handle all data with confidentiality, store it securely, and only share it when necessary and lawful. For more details or to request access to your information, please contact our management team.</p>
+                <p>At The Bliss Homes, we are committed to protecting the privacy and personal information of our residents, staff, and visitors. We collect and process personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. Information is used solely to provide high-quality care and support, ensure safety, and comply with legal obligations. We handle all data with confidentiality, store it securely, and only share it when necessary and lawful. For more details or to request access to your information, please contact our management team.</p>
             </div>
         </section>
         <Footer/>

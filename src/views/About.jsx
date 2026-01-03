@@ -1,8 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import heroImg from "../assets/imgs/about-img.jpg";
 import { useEffect, useState } from "react";
-import ethoImg from "../assets/imgs/supportive.jpg";
 
 const About = () => {
 
@@ -56,7 +54,7 @@ const About = () => {
                 </div>
                 <div className="hero-background-img-container">
                     <div className="abovemet"></div>
-                    <img src={heroImg} alt="hero image" className="hero-background-img" />
+                    <img src="/about-img.webp" alt="hero image" className="hero-background-img" loading="lazy" />
                 </div>
                 <div className="hero">
                     <div className="hero-content">
@@ -86,7 +84,7 @@ const About = () => {
                     <div className="below-hero-right">
                         <div className="undernet"></div>
                         <div className="below-hero-img-container">
-                            <img src={ethoImg} alt="" className="below-hero-img" />
+                            <img src="/supportive.webp" alt="" className="below-hero-img" loading="lazy" />
                         </div>
                     </div>
                 </div>

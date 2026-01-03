@@ -2,8 +2,6 @@ import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import heroImg from "../assets/imgs/join-us.jpg";
-import joinImg from "../assets/imgs/join-hero.jpg";
 import axios from "axios";
 
 const Join = () => {
@@ -198,7 +196,7 @@ const Join = () => {
             </div>
             <div className="hero-background-img-container">
                 <div className="abovemet"></div>
-                <img src={heroImg} alt="hero image" className="hero-background-img" />
+                <img src="/join-us.webp" alt="hero image" className="hero-background-img" loading="lazy" />
             </div>
             <div className="hero">
                 <div className="hero-content">
@@ -213,7 +211,7 @@ const Join = () => {
             <div className="join-us">
                 <div className="join-us-left">
                     <div className="join-us-left-content">
-                        <img src={joinImg} alt="" className="join-us-left-img" />
+                        <img src="/join-hero.webp" alt="" className="join-us-left-img" />
                     </div>
                 </div>
                 <div className="join-us-right">
