@@ -216,6 +216,7 @@ const Header = () => {
                             <nav className="nav-container">
                                 <ul className="nav-list">
                                     <li className={`
+                                    ${location.pathname === "/" ? "nav-item active" : "nav-item"}
                                     ${location.pathname === "/home" ? "nav-item active" : "nav-item"}
                                     `}><Link to="/home">Home</Link></li>
                                     <li className={`
