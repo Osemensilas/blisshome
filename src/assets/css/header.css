@@ -103,8 +103,16 @@
     margin: 0 0 0 20px;
 }
 
+.nav-item.active{
+    border-bottom: 2px solid var(--primary);
+}
+
 .nav-item a {
     color: var(--white);
+}
+
+.nav-item.active a{
+    color: var(--primary);
 }
 
 .header-cta-1 {

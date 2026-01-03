@@ -2,10 +2,14 @@ import {Link} from "react-router-dom";
 import { useState } from "react";
 import "../assets/css/header.css";
 import "../assets/css/contact.css";
-import logo from "../assets/imgs/new-blisshome-w.png";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+
+    const location = useLocation();
+    console.log(location.pathname);
+
     const [showForm, setShowForm] = useState('');
     const [hamburger, setHamburger] = useState('hamburger');
     const [navigationsContaainer, setNavContainer] = useState('header-right');
@@ -191,7 +195,7 @@ const Header = () => {
                 <div className="header">
                     <div className="header-left">
                         <div className="header-logo-container">
-                            <img src={logo} className="header-logo" alt="" />
+                            <img src="/new-blisshome-w.png" className="header-logo" alt="" />
                         </div>
                     </div>
                     <div className={navigationsContaainer}>
@@ -211,12 +215,24 @@ const Header = () => {
                         <div className="header-right-bottom">
                             <nav className="nav-container">
                                 <ul className="nav-list">
-                                    <li className="nav-item"><Link to="/home">Home</Link></li>
-                                    <li className="nav-item"><Link to="/our-services">Our Services</Link></li>
-                                    <li className="nav-item"><Link to="/join-us">Join Us</Link></li>
-                                    <li className="nav-item"><Link to="/safeguarding">Safeguarding</Link></li>
-                                    <li className="nav-item"><Link to="/contact-us">Contact Us</Link></li>
-                                    <li className="nav-item"><Link to="/about-us">About Us</Link></li>
+                                    <li className={`
+                                    ${location.pathname === "/home" ? "nav-item active" : "nav-item"}
+                                    `}><Link to="/home">Home</Link></li>
+                                    <li className={`
+                                    ${location.pathname === "/our-services" ? "nav-item active" : "nav-item"}
+                                    `}><Link to="/our-services">Our Services</Link></li>
+                                    <li className={`
+                                    ${location.pathname === "/join-us" ? "nav-item active" : "nav-item"}
+                                    `}><Link to="/join-us">Join Us</Link></li>
+                                    <li className={`
+                                    ${location.pathname === "/safeguarding" ? "nav-item active" : "nav-item"}
+                                    `}><Link to="/safeguarding">Safeguarding</Link></li>
+                                    <li className={`
+                                    ${location.pathname === "/contact-us" ? "nav-item active" : "nav-item"}
+                                    `}><Link to="/contact-us">Contact Us</Link></li>
+                                    <li className={`
+                                    ${location.pathname === "/about-us" ? "nav-item active" : "nav-item"}
+                                    `}><Link to="/about-us">About Us</Link></li>
                                 </ul>
                                 <div className="header-cta-container">
                                     <Link to="#" className="header-cta-1 btn" onClick={viewContactForm}>Contact Us</Link>

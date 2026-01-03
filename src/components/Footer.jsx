@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "../assets/css/footer.css";
-import logo from "../assets/imgs/bliss-homes-w.png";
 import { useState } from "react";
 import axios from "axios";
 
@@ -110,7 +109,7 @@ const Footer = () => {
                 <div className="footer-top-left">
                     <div className="footer-award-container">
                         <div className="footer-award">
-                            <img src={logo} alt="" className="footer-award-img" />
+                            <img src="/bliss-homes-w.png" alt="" className="footer-award-img" />
                         </div>
                     </div>
                     <div className="footer-nav-container">
