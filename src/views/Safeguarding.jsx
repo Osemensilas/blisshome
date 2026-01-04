@@ -192,7 +192,7 @@ const Safeguarding = () => {
                     <div className="our-goal-right">
                         <div className="our-gaol-content">
                             <h2>Our Safeguarding Commitment</h2>
-                            <p>The Bliss Homes operates in line with UK safeguarding legislation and statutory guidance, including:</p>
+                            <p>The Blissful Homes operates in line with UK safeguarding legislation and statutory guidance, including:</p>
                             <ul>
                                 <li>The Children Act 1989 and 2004</li>
                                 <li>The Care Act 2014</li>
